@@ -83,10 +83,12 @@ declare global {
 
 # Step 2
 
-features of the game
 
-Hint for word letters with a hint count
-played by 1 up to 4 players
-when player gets letter correct player score goes up
-has option to finish and guess the word
-goes turn, if you get a letter correct turn still plays, if you get wrong next person gets the turn
+This crux of the game is matching tiles, so things done in the game are
+  - flip a tile
+  - while that tile is flipped, go ahead and flip another tile, if they match you get a point and go again, otherwise it moves to the next person (if single player it just faces both of them downwards)
+  - they reduce until you finish them all
+  - has to be finished within time frame
+  - modes can be changed (easy, advanced, hard)
+  - automatically with every end of turn it gets slightly more difficult, in terms of number of tiles and what you are matching
+  
