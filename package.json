@@ -1,0 +1,26 @@
+{
+  "name": "pattern-pursuit",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "bun-types": "latest",
+    "eslint": "^8.50.0",
+    "rune-games-sdk": "^4.13.0",
+    "tslint": "^6.1.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-plugin-rune": "^0.1.1"
+  },
+  "module": "index.ts",
+  "dependencies": {
+    "eslint-plugin-rune": "^0.1.11"
+  }
+}
