@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
@@ -10,77 +10,111 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #363232;
+  background: rgb(255, 250, 206);
+  background: radial-gradient(
+    circle,
+    rgba(255, 250, 206, 1) 8%,
+    rgba(255, 124, 82, 0.9959383411567753) 100%
+  );
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  --template-columns: 3;
+
+  --tile-background: #b89f88;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+  --spacing-xl: 64px;
+
+  --gray-100: #f7f7f7; /* Very light gray, almost white */
+  --gray-200: #e9e9e9; /* Light gray */
+  --gray-300: #d2d2d2; /* Neutral gray */
+  --gray-400: #a0a0a0; /* Mid-tone gray */
+  --gray-500: #707070; /* Darker gray */
+  --gray-600: #4a4a4a; /* Very dark gray */
+  --black: #000000; /* True black */
+
+  --improved-pink-1: #d1a5a4;
+  --improved-pink-2: #db9f9e;
+  --improved-pink-3: #d58887;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-
-html,
-body {
-  height: 100%;
+html {
+  height: 100vh;
   width: 100%;
-
 }
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+#app {
+  width: 100%;
+  height: 100%;
 }
-a:hover {
-  color: #535bf2;
-}
-
-
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 60px);
+  gap: var(--spacing-md);
+  padding: var(--spacing-xs);
+  justify-content: center;
+  align-content: flex-start;
+  margin-top: var(--spacing-lg);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
+.tile-container {
+  width: 60px;
+  height: 90px;
+  perspective: 1000px;
 }
 
-.card {
-  padding: 2em;
+.tile {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d; /* Keeps the 3D positioning of child elements */
+  transition: transform 0.5s;
+}
+.tile-back::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
 }
 
-.read-the-docs {
-  color: #888;
+.tile-front,
+.tile-back {
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.tile-back {
+  background-image: url("/wood-pattern.png");
+  background-color: var(--tile-background);
+  transform: rotateY(0deg);
 }
-button:hover {
-  border-color: #646cff;
+.tile-front {
+  transform: rotateY(180deg);
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.tile-container:hover .tile,
+.tile-container:focus .tile {
+  transform: rotateY(
+    -180deg
+  ); /* Flip to show the front side on hover or focus */
 }
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

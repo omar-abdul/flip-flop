@@ -15,11 +15,9 @@ declare global {
 Rune.initLogic({
   minPlayers: 1,
   maxPlayers: 1,
-  setup: (playerIds) => {
-    return {
+  setup: () => ({
       count: 0,
-    };
-  },
+    }),
   actions: {
     increment: ({ amount }, { game }) => {
       game.count += amount;
