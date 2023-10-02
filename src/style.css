@@ -21,7 +21,7 @@
   text-rendering: optimizeLegibility;
   --template-columns: 3;
 
-  --tile-background: #b89f88;
+  --tile-background: #705741;
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
@@ -44,8 +44,9 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-html {
-  height: 100vh;
+html,
+body {
+  height: 100%;
   width: 100%;
 }
 #app {
@@ -53,18 +54,20 @@ html {
   height: 100%;
 }
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 60px);
+  display: flex;
   gap: var(--spacing-md);
-  padding: var(--spacing-xs);
+  height: 100%;
   justify-content: center;
-  align-content: flex-start;
-  margin-top: var(--spacing-lg);
+  align-items: center;
+  flex-wrap: wrap;
+  padding: var(--spacing-xs);
+  margin-top: var(--spacing-md);
 }
 
 .tile-container {
   width: 60px;
   height: 90px;
+  flex: 0 0 60px;
   perspective: 1000px;
 }
 
@@ -74,6 +77,7 @@ html {
   position: relative;
   transform-style: preserve-3d; /* Keeps the 3D positioning of child elements */
   transition: transform 0.5s;
+  transform-origin: center;
 }
 .tile-back::before {
   content: "";
@@ -93,8 +97,7 @@ html {
 
 .tile-front,
 .tile-back {
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
   width: 100%;
   height: 100%;
   position: absolute;
@@ -106,8 +109,34 @@ html {
   background-color: var(--tile-background);
   transform: rotateY(0deg);
 }
+
+.tile-side {
+  position: absolute;
+  background: #888; /* Or any shade representing the tile's side */
+  backface-visibility: hidden;
+}
+
+.tile-side.left {
+  width: 3px; /* or a few pixels to make it thicker */
+  height: 100%;
+  left: 0;
+  transform: rotateY(-90deg);
+}
+
+.tile-side.right {
+  width: 3px;
+  height: 100%;
+  right: 0;
+  transform: rotateY(90deg);
+}
+
 .tile-front {
   transform: rotateY(180deg);
+}
+.tile-front,
+.tile-back,
+.tile-side {
+  border-radius: 10px;
 }
 .tile-container:hover .tile,
 .tile-container:focus .tile {
