@@ -36,3 +36,6 @@ Image by <a href="https://www.freepik.com/free-vector/vintage-tv_763025.htm#quer
 Image by <a href="https://www.freepik.com/free-vector/retro-radio-sets-drawings_753299.htm#query=Retro%20Radios&position=5&from_view=search&track=ais">Freepik</a>
 <a href="https://www.freepik.com/free-vector/cute-astronaut-listening-with-boombox-cartoon-vector-icon-illustratiod-science-technology-icon-concept-isolated-premium-vector-flat-cartoon-style_22638228.htm#query=Boomboxe&position=8&from_view=search&track=sph">Image by catalyststuff</a> on Freepik
 
+<a href="https://www.freepik.com/free-vector/arcade-game-machine-isolated_22740207.htm#query=Arcade%20Machines&position=0&from_view=search&track=ais">Image by brgfx</a> on Freepik
+Image by <a href="https://www.freepik.com/free-vector/london-calling_671135.htm#query=phone%20booth&from_query=Phonebooth&position=1&from_view=search&track=sph">Freepik</a>    
+

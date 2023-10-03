@@ -1,9 +1,10 @@
-import { GameState } from "../logic";
+// import { GameState } from "../logic";
 import { getAppContainer } from "../util/util";
-import { renderTiles } from "./tiles";
+import { attachListenerToFlip, renderTiles } from "./tiles";
 
-export function renderApp(game: GameState) {
+export function renderApp() {
   const app = getAppContainer();
 
   app.append(renderTiles()); //renderTiles under this container
+  attachListenerToFlip();
 }

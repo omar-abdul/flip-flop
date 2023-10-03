@@ -138,11 +138,20 @@ body {
 .tile-side {
   border-radius: 10px;
 }
-.tile-container:hover .tile,
-.tile-container:focus .tile {
-  transform: rotateY(
-    -180deg
-  ); /* Flip to show the front side on hover or focus */
+
+/* Flip to show the front side on hover or focus */
+
+.tile-container[data-flipped="true"] .tile {
+  transform: rotateY(-180deg);
+}
+
+/*Temp class for Front face*/
+
+.p-value {
+  color: var(--black);
+  font-size: larger;
+  font-weight: bold;
+  text-align: center;
 }
 @media (prefers-color-scheme: light) {
   :root {
