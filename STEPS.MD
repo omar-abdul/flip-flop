@@ -88,6 +88,9 @@ This crux of the game is matching tiles, so things done in the game are
   - shuffle all the tiles, using the algo
   - flip a tile
   - while that tile is flipped, go ahead and flip another tile, if they match you get a point and go again, otherwise it moves to the next person (if single player it just faces both of them downwards)
+  
+
+  
   - they reduce until you finish them all
   - has to be finished within time frame
   - modes can be changed (easy, advanced, hard)

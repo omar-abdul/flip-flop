@@ -1,5 +1,7 @@
+import { GameState } from "../logic";
 import { createElement, shuffle } from "../util/util";
 import * as theme from "./themes.json";
+
 export function renderTiles() {
   const grid = createElement("div");
   grid.classList.add("grid");
@@ -46,16 +48,30 @@ export function attachListenerToFlip() {
   const tileContainers =
     document.querySelectorAll<HTMLDivElement>(".tile-container");
 
-  tileContainers.forEach((container) => {
-    // Add mouseover (hover) event listener
-    container.addEventListener("click", function () {
-      if (container.dataset.flipped === "false")
+  const handleClicks = function (container: HTMLDivElement) {
+    if (container.dataset.flipped === "false") {
+      if (flipped.length < 2) {
+        Rune.actions.pushToFlippedTiles({
+          tileValue: container.dataset.tileValue!,
+        });
         container.dataset.flipped = "true";
-      else {
-        container.dataset.flipped = "false";
       }
-    });
+    } else {
+      Rune.actions.popFlippedTiles({
+        tileValue: container.dataset.tileValue!,
+      });
+      container.dataset.flipped = "false";
+    }
+  };
+  tileContainers.forEach((container) => {
+    // Add click event listener
 
-    // Add focus event listener
+    container.addEventListener("click", () => handleClicks(container));
   });
 }
+let flipped: string[] = [];
+document.addEventListener("gamestate", function (e) {
+  const { flippedTiles } = e.detail.game;
+
+  flipped = [...flippedTiles];
+});

@@ -1,4 +1,3 @@
-// import { GameState } from "../logic";
 import { getAppContainer } from "../util/util";
 import { attachListenerToFlip, renderTiles } from "./tiles";
 
