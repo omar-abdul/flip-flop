@@ -14,8 +14,3 @@ export function shuffle<T>(array: T[]): T[] {
   }
   return array;
 }
-export function generateID(length = 6) {
-  return Math.random()
-    .toString(16)
-    .substring(2, 2 + length);
-}

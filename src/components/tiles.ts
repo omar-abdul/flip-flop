@@ -1,8 +1,8 @@
 import { createElement, shuffle } from "../util/util";
 import * as theme from "./themes.json";
+
 const arrayDoubled = [...theme.retro, ...theme.retro];
 export const shuffledArray = shuffle(arrayDoubled);
-
 let checking = false;
 const flippedArr: string[] = [];
 
