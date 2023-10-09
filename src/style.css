@@ -148,7 +148,7 @@ body {
   transform: rotateY(-180deg);
 }
 .tile-container[data-matched="true"] {
-  animation: fadeOut 1.5s forwards;
+  animation: fadeOut 2s forwards;
 }
 @keyframes fadeOut {
   from {

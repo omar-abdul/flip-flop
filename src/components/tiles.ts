@@ -1,20 +1,22 @@
 import { createElement, shuffle } from "../util/util";
 import * as theme from "./themes.json";
+const arrayDoubled = [...theme.retro, ...theme.retro];
+export const shuffledArray = shuffle(arrayDoubled);
+
+let checking = false;
+const flippedArr: string[] = [];
 
 export function renderTiles() {
   const grid = createElement("div");
   grid.classList.add("grid");
 
-  const arrayDoubled = [...theme.retro, ...theme.retro];
-  const shuffeledArray = shuffle(arrayDoubled);
+  for (let i = 0; i <= shuffledArray.length - 1; i++) {
+    const { value } = shuffledArray[i];
 
-  for (let i = 0; i <= shuffeledArray.length - 1; i++) {
-    const { value } = shuffeledArray[i];
-    // const id = generateID();
     const tileContainer = createElement("div");
     tileContainer.classList.add("tile-container");
     tileContainer.dataset.tileValue = value;
-    // tileContainer.dataset.tileId = id;
+
     tileContainer.dataset.flipped = "false";
 
     const tile = document.createElement("div");
@@ -43,9 +45,10 @@ export function renderTiles() {
 
   return grid;
 }
-let checking = false;
+
 export function attachListenerToFlip() {
   // Select all .tile-container elements
+
   const tileContainers =
     document.querySelectorAll<HTMLDivElement>(".tile-container");
 
@@ -56,6 +59,7 @@ export function attachListenerToFlip() {
           Rune.actions.pushToFlippedTiles({
             tileId: container.dataset.tileValue!,
           });
+
           container.dataset.flipped = "true";
         }
       } else {
@@ -70,7 +74,7 @@ export function attachListenerToFlip() {
     container.addEventListener("click", () => handleClicks(container));
   });
 }
-const flippedArr: string[] = [];
+
 document.addEventListener("gamestate", function (e) {
   const { flippedTiles, match } = e.detail.game;
 
