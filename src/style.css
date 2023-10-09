@@ -132,6 +132,9 @@ body {
 
 .tile-front {
   transform: rotateY(180deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .tile-front,
 .tile-back,
@@ -143,6 +146,17 @@ body {
 
 .tile-container[data-flipped="true"] .tile {
   transform: rotateY(-180deg);
+}
+.tile-container[data-matched="true"] {
+  animation: fadeOut 1.5s forwards;
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 /*Temp class for Front face*/

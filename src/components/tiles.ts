@@ -1,4 +1,3 @@
-import { GameState } from "../logic";
 import { createElement, shuffle } from "../util/util";
 import * as theme from "./themes.json";
 
@@ -11,9 +10,11 @@ export function renderTiles() {
 
   for (let i = 0; i <= shuffeledArray.length - 1; i++) {
     const { value } = shuffeledArray[i];
+    // const id = generateID();
     const tileContainer = createElement("div");
     tileContainer.classList.add("tile-container");
     tileContainer.dataset.tileValue = value;
+    // tileContainer.dataset.tileId = id;
     tileContainer.dataset.flipped = "false";
 
     const tile = document.createElement("div");
@@ -42,36 +43,63 @@ export function renderTiles() {
 
   return grid;
 }
-
+let checking = false;
 export function attachListenerToFlip() {
   // Select all .tile-container elements
   const tileContainers =
     document.querySelectorAll<HTMLDivElement>(".tile-container");
 
   const handleClicks = function (container: HTMLDivElement) {
-    if (container.dataset.flipped === "false") {
-      if (flipped.length < 2) {
-        Rune.actions.pushToFlippedTiles({
-          tileValue: container.dataset.tileValue!,
+    if (!checking) {
+      if (container.dataset.flipped === "false") {
+        if (flippedArr.length < 2) {
+          Rune.actions.pushToFlippedTiles({
+            tileId: container.dataset.tileValue!,
+          });
+          container.dataset.flipped = "true";
+        }
+      } else {
+        Rune.actions.popFlippedTiles({
+          tileId: container.dataset.tileValue!,
         });
-        container.dataset.flipped = "true";
+        container.dataset.flipped = "false";
       }
-    } else {
-      Rune.actions.popFlippedTiles({
-        tileValue: container.dataset.tileValue!,
-      });
-      container.dataset.flipped = "false";
     }
   };
   tileContainers.forEach((container) => {
-    // Add click event listener
-
     container.addEventListener("click", () => handleClicks(container));
   });
 }
-let flipped: string[] = [];
+const flippedArr: string[] = [];
 document.addEventListener("gamestate", function (e) {
-  const { flippedTiles } = e.detail.game;
+  const { flippedTiles, match } = e.detail.game;
 
-  flipped = [...flippedTiles];
+  flippedArr.length = 0;
+  flippedArr.push(...flippedTiles);
+  if (flippedArr.length === 0) {
+    match.map((value) => {
+      document
+        .querySelectorAll<HTMLDivElement>(".tile-container")
+        .forEach((container) => {
+          if (container.dataset.tileValue === value) {
+            checking = true;
+            container.dataset.matched = "true";
+            setTimeout(() => {
+              checking = false;
+            }, 700);
+          }
+        });
+    });
+    document
+      .querySelectorAll<HTMLDivElement>(
+        '.tile-container[data-flipped="true"]:not([data-matched="true"])'
+      )
+      .forEach((container) => {
+        checking = true;
+        setTimeout(() => {
+          container.dataset.flipped = "false";
+          checking = false;
+        }, 700);
+      });
+  }
 });

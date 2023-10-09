@@ -1,6 +1,3 @@
-export function render(element: HTMLElement, html: string) {
-  element.innerHTML = html;
-}
 export function getAppContainer() {
   return document.querySelector("#app")!;
 }
@@ -16,4 +13,9 @@ export function shuffle<T>(array: T[]): T[] {
     array[j] = temp;
   }
   return array;
+}
+export function generateID(length = 6) {
+  return Math.random()
+    .toString(16)
+    .substring(2, 2 + length);
 }

@@ -5,5 +5,6 @@ export function renderApp() {
   const app = getAppContainer();
 
   app.append(renderTiles()); //renderTiles under this container
+
   attachListenerToFlip();
 }
